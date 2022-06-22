@@ -3,10 +3,22 @@ const parseRequestLine = (line) => {
   return { method, uri, httpVersion };
 };
 
+const parseHeaders = lines => {
+  let index = 0;
+  const headers = {};
+  while (index < lines.length && lines[index].length > 0) {
+    const [header, ...value] = lines[index].split(':');
+    headers[header.trim()] = value.join(':').trim();
+    index++;
+  }
+  return headers;
+};
+
 const parseRequest = (chunk) => {
   const lines = chunk.split('\n');
   const requestLine = parseRequestLine(lines[0]);
-  return requestLine;
+  const headers = parseHeaders(lines.slice(1));
+  return headers;
 };
 
-module.exports = { parseRequest, parseRequestLine };
+module.exports = { parseRequest, parseRequestLine, parseHeaders };
