@@ -18,7 +18,7 @@ const parseRequest = (chunk) => {
   const lines = chunk.split('\n');
   const requestLine = parseRequestLine(lines[0]);
   const headers = parseHeaders(lines.slice(1));
-  return headers;
+  return { headers, ...requestLine };
 };
 
 module.exports = { parseRequest, parseRequestLine, parseHeaders };
