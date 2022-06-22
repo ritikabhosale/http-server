@@ -1,4 +1,6 @@
 const { createServer } = require('net');
+const { parseRequest } = require('./parseRequest.js');
+
 const response = (text) => `HTTP/1.1 200 OK \r\n\r\n${html('hello')}`;
 const html = body => `<html><body>${body}</body></html>`;
 
