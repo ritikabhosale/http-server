@@ -1,14 +1,14 @@
 const assert = require('assert');
-const { Response } = require('../src/response');
-const { handleRequest } = require('../src/server');
+const { Response } = require('../src/response.js');
+const { handler } = require('../src/handler.js');
 
-describe('handleRequest', () => {
+describe('handler', () => {
   it('should write on the basis of request', () => {
     let actual;
     const mockedSocket = { write: (data) => actual = data, end: (x) => x };
     const response = new Response(mockedSocket);
 
-    handleRequest({ uri: '/' }, response);
+    handler({ uri: '/' }, response);
     const expected = 'HTTP/1.1 200 \r\n\r\n<html><body>hello</body></html>';
     assert.deepStrictEqual(actual, expected);
   });
@@ -18,7 +18,7 @@ describe('handleRequest', () => {
     const mockedSocket = { write: (data) => actual = data, end: (x) => x };
     const response = new Response(mockedSocket);
 
-    handleRequest({ uri: '/fake' }, response);
+    handler({ uri: '/fake' }, response);
     const expected = 'HTTP/1.1 400 \r\n\r\n<html><body>unknown</body></html>';
     assert.deepStrictEqual(actual, expected);
   });

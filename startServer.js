@@ -1,5 +1,6 @@
 const { createServer } = require('net');
-const { onConnection, handleRequest } = require('./src/server');
+const { handler } = require('./src/handler');
+const { onConnection } = require('./src/server');
 
 const startServer = (PORT, handler) => {
   const server = createServer((socket) => onConnection(socket, handler));
@@ -9,4 +10,4 @@ const startServer = (PORT, handler) => {
   });
 };
 
-startServer(4444, handleRequest);
+startServer(4444, handler);

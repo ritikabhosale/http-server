@@ -1,17 +1,6 @@
 const { parseRequest } = require('./parseRequest.js');
 const { Response } = require('./response.js');
 
-const html = body => `<html><body>${body}</body></html>`;
-
-const handleRequest = ({ uri }, response) => {
-  if (uri === '/') {
-    response.send((html('hello')));
-    return;
-  }
-  response.statusCode = 400;
-  response.send((html('unknown')));
-};
-
 const onConnection = (socket, handler) => {
   socket.setEncoding('utf8');
 
@@ -22,4 +11,4 @@ const onConnection = (socket, handler) => {
   });
 };
 
-module.exports = { onConnection, handleRequest };
+module.exports = { onConnection };
