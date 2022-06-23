@@ -1,15 +1,15 @@
 const { parseRequest } = require('./parseRequest.js');
+const { Response } = require('./response.js');
 
 const html = body => `<html><body>${body}</body></html>`;
 
-const response = body => `HTTP/1.1 200 OK \r\n\r\n${body}`;
-
-const handleRequest = ({ uri }, socket) => {
+const handleRequest = ({ uri }, response) => {
   if (uri === '/') {
-    socket.write(response(html('hello')));
+    response.send((html('hello')));
     return;
   }
-  socket.write(response(html('unknown')));
+  response.statusCode = 400;
+  response.send((html('unknown')));
 };
 
 const onConnection = (socket, handler) => {
@@ -17,8 +17,8 @@ const onConnection = (socket, handler) => {
 
   socket.on('data', (chunk) => {
     const request = parseRequest(chunk);
-    handler(request, socket);
-    socket.end();
+    const response = new Response(socket);
+    handler(request, response);
   });
 };
 
