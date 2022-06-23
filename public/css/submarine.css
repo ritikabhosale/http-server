@@ -1,0 +1,48 @@
+.container .sky {
+    height: 50%;
+}
+
+.container .band {
+    height: 20%;
+}
+
+.container .band:nth-child(1) {
+    background-color: hsl(205, 100%, 88%);
+}
+
+.container .band:nth-child(2) {
+    background-color: hsl(205, 100%, 90%);
+}
+
+.container .band:nth-child(3) {
+    background-color: hsl(205, 100%, 92%);
+}
+
+.container .band:nth-child(4) {
+    background-color: hsl(205, 100%, 94%);
+}
+
+.container .band:nth-child(5) {
+    background-color: hsl(205, 100%, 96%);
+}
+
+.container .ocean {
+    background-color: dodgerblue;
+    height: 50%;
+}
+
+.container .submarine {
+    font-size: 250px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 600;
+    line-height: 1.5em;
+    text-align: center;
+    color: hsla(210, 60%, 35%, 0.8);
+    text-shadow: 2px 2px 2px hsla(0, 0%, 100%, 0.16);
+    ;
+}
+
+.submarine .periscope {
+    position: relative;
+    bottom: 0.6em;
+}
