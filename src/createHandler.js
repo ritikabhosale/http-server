@@ -3,9 +3,9 @@ const { dynamicHandler } = require('./dynamicHandler');
 const { notFoundHandler } = require('./notFoundHandler');
 
 const createHandler = (handlers) => {
-  return (request, response) => {
+  return (request, response, serveFrom) => {
     for (const handler of handlers) {
-      if (handler(request, response)) {
+      if (handler(request, response, serveFrom)) {
         return true;
       }
     }

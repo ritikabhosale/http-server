@@ -8,9 +8,9 @@ const getMimeType = (fileName) => {
   return 'text/html';
 };
 
-const serveFileContent = ({ uri }, response) => {
+const serveFileContent = ({ uri }, response, serveFrom) => {
   uri = (uri === '/') ? '/index.html' : uri;
-  const fileName = './public' + uri;
+  const fileName = (serveFrom ? serveFrom : './public') + uri;
 
   if (fs.existsSync(fileName)) {
     const content = fs.readFileSync(fileName);
