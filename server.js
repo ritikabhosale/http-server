@@ -6,7 +6,6 @@ const { Response } = require('./src/response.js');
 const onConnection = (socket, handler) => {
   socket.on('data', (chunk) => {
     const request = parseRequest(chunk.toString());
-    console.log(new Date(), request.method, request.uri);
     const response = new Response(socket);
     handler(request, response);
   });

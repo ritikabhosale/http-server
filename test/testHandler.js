@@ -9,7 +9,7 @@ describe('handler', () => {
     const response = new Response(mockedSocket);
 
     handler({ uri: '/' }, response);
-    const expected = 'HTTP/1.1 200 \r\n\content-length: 31\r\n\r\n<html><body>hello</body></html>';
+    const expected = 'HTTP/1.1 200 OK \r\n\content-length: 31\r\n\r\n<html><body>hello</body></html>';
 
     assert.deepStrictEqual(actual, expected);
   });
@@ -20,7 +20,7 @@ describe('handler', () => {
     const response = new Response(mockedSocket);
 
     handler({ uri: '/fake' }, response);
-    const expected = 'HTTP/1.1 400 \r\ncontent-length: 33\r\n\r\n<html><body>unknown</body></html>';
+    const expected = 'HTTP/1.1 400 NOT FOUND \r\ncontent-length: 33\r\n\r\n<html><body>unknown</body></html>';
 
     assert.deepStrictEqual(actual, expected);
   });

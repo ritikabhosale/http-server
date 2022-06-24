@@ -18,6 +18,7 @@ const serveFileContent = ({ uri }, response) => {
     response.send(content);
     return;
   }
+  response.statusCode = 400;
   response.setHeader('content-type', 'text/html');
   response.send('Page Not Found');
 };

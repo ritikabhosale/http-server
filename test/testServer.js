@@ -21,8 +21,10 @@ describe('onConnection', () => {
     const mockedHandler = (request, response) => handlerInvoked += 1;
 
     onConnection(mockedSocket, mockedHandler);
+
     let request = 'HEAD / HTTP/1.1\r\nhost:localhost:1244\r\nuser-agent:curl';
     mockedSocket.emit('data', request);
+
     request = 'HEAD /hello HTTP/1.1\r\nhost:localhost:1244\r\nuser-agent:curl';
     mockedSocket.emit('data', request);
 
