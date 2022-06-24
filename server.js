@@ -1,6 +1,6 @@
 const { createServer } = require('net');
-const { onConnection } = require("./src/onConnection");
-const { serveFileContent } = require('./src/fileContentHandler.js');
+const { onConnection } = require('./src/onConnection');
+const { requestHandler } = require('./src/createHandler.js');
 
 const startServer = (PORT, handler) => {
   const server = createServer((socket) => onConnection(socket, handler));
@@ -10,6 +10,6 @@ const startServer = (PORT, handler) => {
   });
 };
 
-startServer(4444, serveFileContent);
+startServer(4444, requestHandler);
 
 module.exports = { onConnection };

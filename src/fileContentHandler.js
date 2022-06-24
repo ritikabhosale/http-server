@@ -10,17 +10,16 @@ const getMimeType = (fileName) => {
 
 const serveFileContent = ({ uri }, response) => {
   uri = (uri === '/') ? '/index.html' : uri;
-
   const fileName = './public' + uri;
+
   if (fs.existsSync(fileName)) {
-    response.setHeader('content-type', getMimeType(uri));
     const content = fs.readFileSync(fileName);
+    response.setHeader('content-type', getMimeType(uri));
     response.send(content);
-    return;
+    return true;
   }
-  response.statusCode = 400;
-  response.setHeader('content-type', 'text/html');
-  response.send('Page Not Found');
+
+  return false;
 };
 
 module.exports = { serveFileContent };
