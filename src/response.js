@@ -15,6 +15,10 @@ class Response {
       this.#socket.write(`${header}: ${value}${EOL}`));
   }
 
+  setHeader(header, value) {
+    this.#headers[header] = value;
+  }
+
   send(body) {
     this.setHeader('content-length', body.length);
     const response = `HTTP/1.1 ${this.#statusCode} ${EOL}`;
@@ -23,10 +27,6 @@ class Response {
     this.#socket.write(EOL);
     this.#socket.write(body);
     this.#socket.end();
-  }
-
-  setHeader(header, value) {
-    this.#headers[header] = value;
   }
 
   set statusCode(code) {
