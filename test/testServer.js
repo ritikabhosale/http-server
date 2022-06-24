@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { onConnection } = require('../server.js');
+const { onConnection } = require('../src/onConnection.js');
 const { EventEmitter } = require('events');
 
 describe('onConnection', () => {
