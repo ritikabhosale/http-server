@@ -1,11 +1,13 @@
 const fs = require('fs');
 
+const mimeTypes = {
+  img: 'image/png',
+  html: 'text/html'
+}
+
 const getMimeType = (fileName) => {
   const extension = fileName.slice(fileName.lastIndexOf('.') + 1);
-  if (extension === 'png') {
-    return 'image/png';
-  }
-  return 'text/html';
+  return mimeTypes[extension];
 };
 
 const serveFileContent = ({ uri }, response, serveFrom) => {
